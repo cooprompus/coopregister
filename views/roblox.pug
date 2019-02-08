@@ -1,0 +1,13 @@
+block head  
+  script(src="/js/bootstrap.min.js")
+  link(rel='stylesheet', href='/css/bootstrap.css')
+  link(rel='stylesheet', href='/register.css')
+body.text-center
+        // register form
+        form(method='POST' action='/register', class="form-signin")
+            h1.display-4.m-b-2=twitch
+            input#name.form-control(type='hidden', name='twitch', value=twitch)
+
+            input#name.form-control(type='text', placeholder='roblox username' name='roblox', required)
+            button.btn.btn-primary(type='submit') Sign up
+
