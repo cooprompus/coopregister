@@ -1,0 +1,37 @@
+block head
+  script(src="/js/jquery-3.3.1.min.js")
+  script(src="/js/manage.js")
+  script(src="/js/bootstrap.min.js")
+  link(rel='stylesheet', href='/css/bootstrap.css')
+
+body.text-center.container
+div.page-header
+  h1 Viewers
+
+label(for='userInput') Search:
+  input.form-control(type="text" id="userInput" autofocus)
+
+div#accordion
+  each user, i in users
+    div.card( id=user.robloxId attr=i style="width:35%")
+      form.form-horizontal(method='POST' action='/user/update')
+        div.card.card-header.form-group(id="heading"+i)
+          a.text-left(id="usercard" href="#collapse"+i data-toggle="collapse" aria-expanded="false" aria-controls="collapse"+i)=user.twitch
+        div.collapse(id="collapse"+i)
+          div
+            input#twitch.form-control(type='hidden' name='twitch' value=user.twitch)
+            input#email.form-control(type='hidden' name='email' value=user.email)
+            label(for='roblox'+1) Roblox
+              input.form-control(type=text style="display:inline" name='roblox' id='roblox'+i value=user.roblox)
+            label(for='discord'+1) Discord
+              input.form-control(type=text style="display:inline" name='discord' id='discord'+i value=user.discord)
+
+          div
+            label.col-sm-2.checkbox-inline(for='mod'+i) Mod
+              input.form-control(type='checkbox' id='mod'+i name='mod' checked=user.mod)
+            label.col-sm-2.checkbox-inline(for='vip'+i) VIP
+              input.form-control(type='checkbox' id='vip'+i name='vip' checked=user.vip)
+            label.col-sm-2.checkbox-inline(for='ban'+i) BAN
+              input.form-control(type='checkbox' id='ban'+i name='ban' checked=user.ban)
+          button.btn.btn-primary(type='submit') Update
+
