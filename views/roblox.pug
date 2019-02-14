@@ -8,6 +8,10 @@ body.text-center
             h1.display-4.m-b-2=twitch
             input#name.form-control(type='hidden', name='twitch', value=twitch)
 
-            input#name.form-control(type='text', placeholder='roblox username' name='roblox', required)
+            input#name.form-control(type='text', placeholder='roblox username' id="roblox" name='roblox', required)
+			label(for="roblox")
+            input#name.form-control(type='text', placeholder='discord username' id="discord" name='discord')
+			label(for="discord")
+
             button.btn.btn-primary(type='submit') Sign up
 
