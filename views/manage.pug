@@ -16,10 +16,11 @@ div#accordion
     div.card( id=user.robloxId attr=i style="width:35%")
       form.form-horizontal(method='POST' action='/user/update')
         div.card.card-header.form-group(id="heading"+i)
-          a.text-left(id="usercard" href="#collapse"+i data-toggle="collapse" aria-expanded="false" aria-controls="collapse"+i)=user.twitch
+          a.text-left(id="usercard" href="#collapse"+i data-toggle="collapse" aria-expanded="false" aria-controls="collapse"+i)=user.twitch + " (" + user.twitchDisplay + ")"
         div.collapse(id="collapse"+i)
           div
             input#twitch.form-control(type='hidden' name='twitch' value=user.twitch)
+            input#twitch.form-control(type='hidden' name='twitchDisplay' value=user.twitchDisplay)
             input#email.form-control(type='hidden' name='email' value=user.email)
             label(for='roblox'+1) Roblox
               input.form-control(type=text style="display:inline" name='roblox' id='roblox'+i value=user.roblox)

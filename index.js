@@ -70,11 +70,11 @@ app.get("/roblox", (req, res) => {
 
 app.post("/register", (req, res) => {
 	//console.log("request")
-	//console.log(req)
+	console.log(req)
 	rbx.getIdFromUsername(req.body.roblox)
 		.then((robloxId) => {
 			console.log(`found id: ${robloxId} for roblox user ${req.body.roblox}`)
-			db.update({ "twitch": req.session.passport.user.username }, { "twitch": req.session.passport.user.username, "roblox": req.body.roblox, "robloxId": robloxId, "email": req.session.passport.user.email}, { upsert: true })
+			db.update({ "twitch": req.session.passport.user.username }, { "twitch": req.session.passport.user.username, "twitchDisplay": req.session.passport.user.display_name, "roblox": req.body.roblox, "robloxId": robloxId, "email": req.session.passport.user.email, "discord": req.body.discord}, { upsert: true })
 		})
 		.then(() => 
 			res.render('index', {twitch: req.session.passport.user.username, roblox: req.body.roblox})
@@ -115,7 +115,7 @@ app.post("/user/update", isAdmin, (req, res) => {
 	rbx.getIdFromUsername(req.body.roblox)
 		.then((robloxId) => {
 			console.log("updating db")
-			return db.update({ "twitch": req.body.twitch }, { "twitch": req.body.twitch, "roblox": req.body.roblox, "robloxId": robloxId, "discord": req.body.discord, "mod":req.body.mod==="on", "vip":req.body.vip==="on", "ban":req.body.ban==="on", "email": req.body.email}, { upsert: true })
+			return db.update({ "twitch": req.body.twitch }, { "twitch": req.body.twitch, "twitchDisplay": req.body.twitchDisplay, "roblox": req.body.roblox, "robloxId": robloxId, "discord": req.body.discord, "mod":req.body.mod==="on", "vip":req.body.vip==="on", "ban":req.body.ban==="on", "email": req.body.email}, { upsert: true })
 		}).then(() => {
 			console.log("redirecting")
 			res.redirect("/manage")
