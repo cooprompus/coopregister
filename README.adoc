@@ -1,0 +1,44 @@
+= coopregister
+
+This app allows users to register themselves using Twitch OAuth. Management functions are provided that allow promoting and banning users.
+
+== Features
+Allows users to register themselves by logging in with their twitch account and then providing their Roblox user name (and other optional information). 
+
+
+Providese management interface to update users roles and mark them as banned. 
+
+
+Provides an API so this list of users can be queried. This can be used with coopblox, which can use this list to determine whether to accept a friend request.
+
+== Running
+
+You are first required to create a ```.env``` file that contains required variables to be set:
+
+..env
+----
+SESSION_SECRET= # <1>
+clientId= # <2>
+clientSecret= # <3>
+callbackUrl= # <4>
+port=8734 # <5>
+----
+<1> create any random string for the session secret
+<2> provided by registering app on https://dev.twitch.tv/
+<3> provided by reigstering app on https://dev.twitch.tv/
+<4> the callback url for the twitch oauth response
+<5> the port this app will run on
+
+after this the ```.env``` file is created, run the app:
+
+.first run
+```
+npm install
+```
+
+.running the app
+```
+nodejs index.js
+```
+
+
